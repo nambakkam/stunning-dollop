@@ -22,9 +22,10 @@ Rectangle{
         font{
             family: "ROBOTO"
             styleName: "Regular"
-            pixelSize: parent.height*0.7
+            pixelSize: parent.height*0.5
         }
         horizontalAlignment: Text.AlignHCenter
+        verticalAlignment: Text.AlignVCenter
     }
     ToolSeparator{
         id:seperator

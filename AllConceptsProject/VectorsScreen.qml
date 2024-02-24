@@ -43,7 +43,7 @@ Rectangle {
             implicitWidth: parent.width*0.35
             implicitHeight: parent.height*0.05
             Layout.alignment: Qt.AlignCenter
-            buttonTextValue: "Push"
+            buttonTextValue: "Push O(1)/O(n)"
             iconSource: "qrc:/icons/arrow-right.svg"
             clickArea{
                 onClicked: {
@@ -57,7 +57,7 @@ Rectangle {
             implicitWidth: parent.width*0.35
             implicitHeight: parent.height*0.05
             Layout.alignment: Qt.AlignCenter
-            buttonTextValue: "Pop"
+            buttonTextValue: "Pop O(1)"
             iconSource: "qrc:/icons/minus-circle.svg"
             clickArea{
                 onClicked: {
@@ -70,7 +70,7 @@ Rectangle {
             implicitWidth: parent.width*0.35
             implicitHeight: parent.height*0.05
             Layout.alignment: Qt.AlignCenter
-            buttonTextValue: "Insert"
+            buttonTextValue: "Insert O(n)"
             iconSource: "qrc:/icons/plus.svg"
             clickArea{
                 onClicked: {
@@ -83,7 +83,7 @@ Rectangle {
             implicitWidth: parent.width*0.35
             implicitHeight: parent.height*0.05
             Layout.alignment: Qt.AlignCenter
-            buttonTextValue: "Delete"
+            buttonTextValue: "Delete O(n)"
             iconSource: "qrc:/icons/cross.svg"
             clickArea{
                 onClicked: {
@@ -96,7 +96,7 @@ Rectangle {
             implicitWidth: parent.width*0.35
             implicitHeight: parent.height*0.05
             Layout.alignment: Qt.AlignCenter
-            buttonTextValue: "Search"
+            buttonTextValue: "Search O(n)"
             iconSource: "qrc:/icons/search.svg"
             clickArea{
                 onClicked: {
@@ -109,7 +109,7 @@ Rectangle {
             implicitWidth: parent.width*0.35
             implicitHeight: parent.height*0.05
             Layout.alignment: Qt.AlignCenter
-            buttonTextValue: "At Index"
+            buttonTextValue: "At Index O(1)"
             iconSource: "qrc:/icons/question.svg"
             clickArea{
                 onClicked: {

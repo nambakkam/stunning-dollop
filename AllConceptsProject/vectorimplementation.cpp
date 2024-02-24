@@ -86,15 +86,11 @@ void VectorImplementation::valueAtRandomIndex()
 
 QString VectorImplementation::getVectorForDisplay()
 {
-    QString result = "[";
-    for (int i = 0; i < vector.size(); ++i) {
-        result += QString::number(vector[i]);
-        if (i < vector.size() - 1) {
-            result += ",";
-        }
-    }
-    result += "]";
-    return result;
+    QByteArray data;
+    std::copy( vector.begin() , vector.end() , std::back_inserter( data ) );
+
+//    qDebug() << data.toHex( ' ' );
+    return QString(data.toHex(','));
 }
 
 void VectorImplementation::removeatRandomIndex()
