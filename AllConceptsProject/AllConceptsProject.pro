@@ -5,8 +5,14 @@ QT += quick concurrent
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+        cgsunitshandler.cpp \
+        customhashtable.cpp \
+        fpsunitshandler.cpp \
         main.cpp \
+        mksunitshandler.cpp \
         randomvaluesgenerator.cpp \
+        unitsfactory.cpp \
+        unitshandler.cpp \
         vectorimplementation.cpp
 
 RESOURCES += qml.qrc
@@ -25,5 +31,11 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 include("./QtSuperMacros/QtSuperMacros.pri")
 
 HEADERS += \
+    cgsunitshandler.h \
+    customhashtable.h \
+    fpsunitshandler.h \
+    mksunitshandler.h \
     randomvaluesgenerator.h \
+    unitsfactory.h \
+    unitshandler.h \
     vectorimplementation.h

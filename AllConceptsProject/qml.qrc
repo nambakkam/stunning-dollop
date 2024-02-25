@@ -19,5 +19,6 @@
         <file>icons/right.svg</file>
         <file>icons/next-button.png</file>
         <file>icons/previous.png</file>
+        <file>UnitsDemonstrator.qml</file>
     </qresource>
 </RCC>

@@ -18,6 +18,10 @@ Item {
             id:hashTableScreen
             property string heading: "Hash Table Implementation"
         }
+        UnitsDemonstrator{
+            id:unitsScreen
+            property string heading: "Units Demonstration"
+        }
     }
     HeadingToolBar{
         id:header
