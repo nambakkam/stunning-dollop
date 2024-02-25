@@ -16,12 +16,27 @@ Rectangle {
         anchors.centerIn: parent
         height: parent.height*0.75
         spacing: parent.height*0.01
-        ComboBox{
-            id:chooseVector
-            implicitWidth: parent.width*0.35
-            implicitHeight: parent.height*0.07
-            Layout.alignment: Qt.AlignCenter
-            model: ["Choose Vector Size","Small", "Medium", "Large"]
+        ListModel {
+               id: vectorSizesListModel
+               ListElement { data: "Choose Vector..." }
+               ListElement { data: "Small"}
+               ListElement { data: "Medium"}
+               ListElement { data: "Large"}
+           }
+
+           ComboBox {
+               id: chooseVector
+               implicitWidth: parent.width * 0.35
+               implicitHeight: parent.height * 0.07
+               model: vectorSizesListModel
+               Layout.alignment: Qt.AlignCenter
+               textRole: "data"
+               delegate: ItemDelegate {
+                   text: model.data
+                   width: chooseVector.width
+                   font.pixelSize: vectorScreen.height*0.025
+               }
+
             onCurrentIndexChanged: {
                 switch(currentIndex){
                 case VectorEnums.SMALL:
@@ -126,8 +141,8 @@ Rectangle {
             TextArea{
                 id:vectorText
                 color: "black"
-                implicitWidth: parent.width
-                implicitHeight: parent.height
+//                implicitWidth: parent.width
+//                implicitHeight: parent.height
                 horizontalAlignment: "AlignLeft"
                 verticalAlignment: "AlignTop"
                 wrapMode: "WrapAtWordBoundaryOrAnywhere"
