@@ -8,12 +8,6 @@
 #include <QMetaEnum>
 #include <QQmlVarPropertyHelpers.h>
 #include <QFutureWatcher>
-
-#define SMALLSIZE 10000
-#define MEDIUMSIZE  50000
-#define LARGESIZE 100000
-#define LOWERLIMIT 10
-#define UPPERLIMIT 1000
 class VectorImplementation : public QObject
 {
     Q_OBJECT

@@ -2,6 +2,7 @@
 #include <QQmlApplicationEngine>
 #include <vectorimplementation.h>
 #include <unitsfactory.h>
+#include <customhashtable.h>
 int main(int argc, char *argv[])
 {
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
@@ -12,8 +13,10 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
     VectorImplementation *vectorHandler = new VectorImplementation;
     UnitsFactory *unitsFactory = new UnitsFactory;
+    CustomHashTable *hashTable = new CustomHashTable;
     VectorImplementation::declareQML();
     engine.rootContext()->setContextProperty("vectorHandler",vectorHandler);
+    engine.rootContext()->setContextProperty("hashTableHandler",hashTable);
     engine.rootContext()->setContextProperty("unitsFactory",unitsFactory);
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,

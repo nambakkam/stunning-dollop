@@ -4,7 +4,7 @@
 VectorImplementation::VectorImplementation(QObject *parent)
     : QObject{parent}, m_disableScreen(false)
 {
-    QObject::connect(&vectorFutureWatcher, &QFutureWatcher<void>::finished,[this](){
+   QObject::connect(&vectorFutureWatcher, &QFutureWatcher<void>::finished,[this](){
         set_disableScreen(false);
         set_description("Random vector of size " + QString::number(vector.size()) + " generated" );
         emit vectorChanged();

@@ -10,7 +10,7 @@ class UnitsHandler : public QObject
 public:
     explicit UnitsHandler(QObject *parent = nullptr);
     virtual ~UnitsHandler();
-    virtual const QString& getLengthUnits() const = 0;
+    virtual const QString& getLengthUnits() const = 0; //Pure Virtual Function
     virtual const QString& getMassUnits() const = 0;
     virtual const QString& getTimeUnits() const = 0;
 signals:
