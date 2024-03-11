@@ -12,18 +12,19 @@ VectorImplementation::VectorImplementation(QObject *parent)
       });
 }
 
-void VectorImplementation::setVectorSize(sizeEnum value) {
+void VectorImplementation::setVectorSize(
+    RandomValuesGenerator::sizeEnum value) {
 
   qDebug() << "Inside setVectorSize ";
   size_t size = 0;
   switch (value) {
-  case SMALL:
+  case RandomValuesGenerator::SMALL:
     size = SMALLSIZE;
     break;
-  case MEDIUM:
+  case RandomValuesGenerator::MEDIUM:
     size = MEDIUMSIZE;
     break;
-  case LARGE:
+  case RandomValuesGenerator::LARGE:
     size = LARGESIZE;
     break;
   default:

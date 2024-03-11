@@ -1,10 +1,10 @@
 #ifndef UNITSFACTORY_H
 #define UNITSFACTORY_H
 
+#include "unitshandler.h"
 #include <QMetaEnum>
 #include <QObject>
 #include <QQmlVarPropertyHelpers.h>
-#include <unitshandler.h>
 
 class UnitsFactory : public QObject {
   Q_OBJECT

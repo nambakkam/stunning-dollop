@@ -1,13 +1,13 @@
 #ifndef VECTORIMPLEMENTATION_H
 #define VECTORIMPLEMENTATION_H
 
+#include "randomvaluesgenerator.h"
 #include <QFutureWatcher>
 #include <QMetaEnum>
 #include <QObject>
 #include <QQmlVarPropertyHelpers.h>
 #include <QVector>
 #include <QtQml>
-#include <randomvaluesgenerator.h>
 class VectorImplementation : public QObject {
   Q_OBJECT
   QML_WRITABLE_VAR_PROPERTY(QString, description)
@@ -15,14 +15,8 @@ class VectorImplementation : public QObject {
   Q_PROPERTY(QString vectorString READ getVectorForDisplay NOTIFY vectorChanged)
 
 public:
-  enum sizeEnum { SMALL = 1, MEDIUM, LARGE };
-  Q_ENUM(sizeEnum)
-
   explicit VectorImplementation(QObject *parent = nullptr);
-  Q_INVOKABLE void setVectorSize(VectorImplementation::sizeEnum value);
-  static void declareQML() {
-    qmlRegisterType<VectorImplementation>("VectorEnums", 1, 0, "VectorEnums");
-  }
+  Q_INVOKABLE void setVectorSize(RandomValuesGenerator::sizeEnum value);
 
 public slots:
   void pushRandomNumber();

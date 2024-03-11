@@ -1,7 +1,6 @@
 import QtQuick 2.15
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.15
-import VectorEnums 1.0
 
 Rectangle {
     id: vectorScreen
@@ -46,18 +45,8 @@ Rectangle {
             }
 
             onCurrentIndexChanged: {
-                switch (currentIndex) {
-                case VectorEnums.SMALL:
-                    vectorHandler.setVectorSize(VectorEnums.SMALL)
-                    break
-                case VectorEnums.MEDIUM:
-                    vectorHandler.setVectorSize(VectorEnums.MEDIUM)
-                    break
-                case VectorEnums.LARGE:
-                    vectorHandler.setVectorSize(VectorEnums.LARGE)
-                    break
-                default:
-
+                if(currentIndex > 0){
+                    vectorHandler.setVectorSize(currentIndex)
                 }
             }
         }

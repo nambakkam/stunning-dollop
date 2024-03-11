@@ -1,7 +1,7 @@
 #include "randomvaluesgenerator.h"
 
-RandomValuesGenerator::RandomValuesGenerator()
-    : m_rng(std::random_device{}()) {}
+RandomValuesGenerator::RandomValuesGenerator(QObject *parent)
+    : QObject{parent}, m_rng(std::random_device{}()) {}
 RandomValuesGenerator &RandomValuesGenerator::getInstance() {
   static RandomValuesGenerator instance;
   return instance;

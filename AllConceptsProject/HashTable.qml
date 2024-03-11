@@ -156,7 +156,7 @@ Rectangle {
             implicitHeight: parent.height * 0.05
             Layout.alignment: Qt.AlignCenter
             buttonTextValue: "View"
-            iconSource: "qrc:/icons/key.svg"
+            iconSource: "qrc:/icons/eye.svg"
         }
         Text {
             id: infoText

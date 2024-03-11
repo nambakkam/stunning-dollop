@@ -1,8 +1,9 @@
+#include "customhashtable.h"
+#include "randomvaluesgenerator.h"
+#include "unitsfactory.h"
+#include "vectorimplementation.h"
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
-#include <customhashtable.h>
-#include <unitsfactory.h>
-#include <vectorimplementation.h>
 int main(int argc, char *argv[]) {
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
   QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
@@ -13,7 +14,6 @@ int main(int argc, char *argv[]) {
   VectorImplementation *vectorHandler = new VectorImplementation;
   UnitsFactory *unitsFactory = new UnitsFactory;
   CustomHashTable *hashTable = new CustomHashTable;
-  VectorImplementation::declareQML();
   engine.rootContext()->setContextProperty("vectorHandler", vectorHandler);
   engine.rootContext()->setContextProperty("hashTableHandler", hashTable);
   engine.rootContext()->setContextProperty("unitsFactory", unitsFactory);
