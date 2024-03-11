@@ -7,8 +7,8 @@ Window {
     visible: true
     title: qsTr("Hello World")
 
-    Loader{
-        id:mainLoader
+    Loader {
+        id: mainLoader
         anchors.fill: parent
         source: "qrc:/MainScreen.qml"
         onLoaded: {
