@@ -2,24 +2,25 @@ import QtQuick 2.15
 import QtQuick.Controls 2.4
 import QtQuick.Controls.Styles 1.4
 import QtQuick.Layouts 1.3
+
 Rectangle {
-    id:headingBar
+    id: headingBar
     width: parent.width
-    height: parent.height*0.075
+    height: parent.height * 0.075
     color: "#273c75"
-    signal previousClicked()
-    signal nextClicked()
+    signal previousClicked
+    signal nextClicked
     property alias tabHeading: headingText.text
-    RowLayout{
-        id:headerItemsLayout
+    RowLayout {
+        id: headerItemsLayout
         anchors.fill: parent
         spacing: 0
-        Rectangle{
-            id:previousButton
-            implicitWidth: parent.width*0.15
-            implicitHeight: parent.height*0.7
+        Rectangle {
+            id: previousButton
+            implicitWidth: parent.width * 0.15
+            implicitHeight: parent.height * 0.7
             Layout.alignment: Qt.AlignVCenter
-            opacity: prevButtonMouseArea.containsPress ? 0.3:1
+            opacity: prevButtonMouseArea.containsPress ? 0.3 : 1
             color: "transparent"
             Image {
                 id: previousIcon
@@ -27,18 +28,18 @@ Rectangle {
                 anchors.fill: parent
                 fillMode: Image.PreserveAspectFit
             }
-            MouseArea{
-                id:prevButtonMouseArea
+            MouseArea {
+                id: prevButtonMouseArea
                 anchors.fill: parent
                 onClicked: {
                     previousClicked()
                 }
             }
         }
-        Rectangle{
-            id:textHolder
+        Rectangle {
+            id: textHolder
             Layout.alignment: Qt.AlignVCenter
-            implicitWidth: parent.width*0.7
+            implicitWidth: parent.width * 0.7
             implicitHeight: parent.height
             color: "transparent"
             clip: true
@@ -49,20 +50,20 @@ Rectangle {
                 anchors.centerIn: parent
                 horizontalAlignment: Text.AlignHCenter
                 width: parent.width
-                elide:Text.ElideRight
-                font{
+                elide: Text.ElideRight
+                font {
                     family: "ROBOTO"
                     styleName: "Medium"
-                    pixelSize: parent.height*0.4
+                    pixelSize: parent.height * 0.4
                 }
             }
         }
-        Rectangle{
-            id:nextButton
+        Rectangle {
+            id: nextButton
             implicitWidth: previousButton.implicitWidth
             implicitHeight: previousButton.implicitHeight
             Layout.alignment: Qt.AlignVCenter
-            opacity: nextMouseArea.containsPress ? 0.3:1
+            opacity: nextMouseArea.containsPress ? 0.3 : 1
             color: "transparent"
             Image {
                 id: nextIcon
@@ -70,14 +71,13 @@ Rectangle {
                 anchors.fill: parent
                 fillMode: Image.PreserveAspectFit
             }
-            MouseArea{
-                id:nextMouseArea
+            MouseArea {
+                id: nextMouseArea
                 anchors.fill: parent
                 onClicked: {
                     nextClicked()
                 }
             }
         }
-
     }
 }
