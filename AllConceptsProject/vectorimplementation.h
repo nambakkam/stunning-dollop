@@ -16,7 +16,7 @@ class VectorImplementation : public QObject {
 
 public:
   explicit VectorImplementation(QObject *parent = nullptr);
-  Q_INVOKABLE void setVectorSize(RandomValuesGenerator::sizeEnum value);
+  Q_INVOKABLE void setVectorSize(int value);
 
 public slots:
   void pushRandomNumber();

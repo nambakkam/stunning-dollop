@@ -12,8 +12,7 @@ VectorImplementation::VectorImplementation(QObject *parent)
       });
 }
 
-void VectorImplementation::setVectorSize(
-    RandomValuesGenerator::sizeEnum value) {
+void VectorImplementation::setVectorSize(int value) {
 
   qDebug() << "Inside setVectorSize ";
   size_t size = 0;
@@ -91,9 +90,7 @@ void VectorImplementation::valueAtRandomIndex() {
 QString VectorImplementation::getVectorForDisplay() {
   QByteArray data;
   std::copy(vector.begin(), vector.end(), std::back_inserter(data));
-
-  //    qDebug() << data.toHex( ' ' );
-  return QString(data.toHex(','));
+  return data.toHex(' ');
 }
 
 void VectorImplementation::removeatRandomIndex() {

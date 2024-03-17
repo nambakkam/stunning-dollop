@@ -7,6 +7,7 @@ Rectangle {
     width: 480
     height: 800
     color: "#45aaf2"
+    enabled: !hashTableHandler.disableScreen
 
     ColumnLayout {
         id: buttonsLayout
@@ -45,7 +46,7 @@ Rectangle {
 
             onCurrentIndexChanged: {
                 if (currentIndex > 0) {
-
+                    hashTableHandler.createHashtable(currentIndex)
                 }
             }
         }
@@ -56,6 +57,11 @@ Rectangle {
             Layout.alignment: Qt.AlignCenter
             buttonTextValue: "Add Element"
             iconSource: "qrc:/icons/plus.svg"
+            clickArea{
+                onClicked: {
+                    hashTableHandler.set()
+                }
+            }
         }
 
         StyledButton {
@@ -65,6 +71,11 @@ Rectangle {
             Layout.alignment: Qt.AlignCenter
             buttonTextValue: "Delete Element"
             iconSource: "qrc:/icons/cross.svg"
+            clickArea{
+                onClicked: {
+                    hashTableHandler.removeKey()
+                }
+            }
         }
 
         StyledButton {
@@ -74,6 +85,11 @@ Rectangle {
             Layout.alignment: Qt.AlignCenter
             buttonTextValue: "Get Value"
             iconSource: "qrc:/icons/question.svg"
+            clickArea{
+                onClicked: {
+                    hashTableHandler.get()
+                }
+            }
         }
 
         ScrollView {
@@ -116,6 +132,12 @@ Rectangle {
             Layout.alignment: Qt.AlignCenter
             buttonTextValue: "Get Keys"
             iconSource: "qrc:/icons/key.svg"
+            clickArea{
+                onClicked: {
+                    var keys = hashTableHandler.getAllKeys()
+                    keysText.text = keys.join()
+                }
+            }
         }
         ScrollView {
             id: vectorTextview
@@ -140,14 +162,7 @@ Rectangle {
                     pixelSize: vectorTextview.implicitHeight * 0.15
                 }
 
-                text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, "
-                      + "sed do eiusmod tempor incididunt ut labore et dolore magna "
-                      + "aliqua. Ut enim ad minim veniam, quis nostrud exercitation "
-                      + "ullamco laboris nisi ut aliquip ex ea commodo cosnsequat. "
-                      + "Lorem ipsum dolor sit amet, consectetur adipisicing elit, "
-                      + "sed do eiusmod tempor incididunt ut labore et dolore magna "
-                      + "aliqua. Ut enim ad minim veniam, quis nostrud exercitation "
-                      + "ullamco laboris nisi ut aliquip ex ea commodo cosnsequat"
+                text: hashTableHandler.displayData
             }
         }
         StyledButton {
@@ -157,16 +172,21 @@ Rectangle {
             Layout.alignment: Qt.AlignCenter
             buttonTextValue: "View"
             iconSource: "qrc:/icons/eye.svg"
+            clickArea{
+                onClicked: {
+                    hashTableHandler.displayHashTable()
+                }
+            }
         }
         Text {
             id: infoText
-            text: qsTr("Click on the above buttons to perform " + "HashTable" + " Operations")
+            text: hashTableHandler.description
             width: parent.width
             horizontalAlignment: "AlignLeft"
             verticalAlignment: "AlignTop"
             wrapMode: "WrapAtWordBoundaryOrAnywhere"
             Layout.alignment: Qt.AlignCenter
-            color: "#e84118"
+            color: "white"
             font {
                 family: "ROBOTO"
                 styleName: "MEDIUM"
