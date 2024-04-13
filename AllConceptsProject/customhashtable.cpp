@@ -6,12 +6,11 @@
 
 CustomHashTable::CustomHashTable(QObject *parent, int size)
     : QObject{parent}, m_disableScreen{false}, m_size{size}, data{size} {
-  QObject::connect(&hashFutureWatcher, &QFutureWatcher<void>::finished,
-                   [this]() {
-                     displayHashTable();
-                     set_description("Hash Table set to selected size");
-                     set_disableScreen(false);
-                   });
+  QObject::connect(&hashFutureWatcher, &QFutureWatcher<void>::finished, [=]() {
+    displayHashTable();
+    set_description("Hash Table set to selected size");
+    set_disableScreen(false);
+  });
 }
 
 void CustomHashTable::set() {
@@ -37,7 +36,6 @@ void CustomHashTable::set() {
   }
   set_description(desc);
 }
-
 int CustomHashTable::get() {
   QVector<QString> keys = getAllKeys();
   int index =
