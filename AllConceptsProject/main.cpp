@@ -1,5 +1,8 @@
 #include "customhashtable.h"
+#include "itemlistcontroller.h"
+#include "itemlistmodel.h"
 #include "randomvaluesgenerator.h"
+#include "taskviewmodel.h"
 #include "unitsfactory.h"
 #include "vectorimplementation.h"
 #include <QGuiApplication>
@@ -10,6 +13,9 @@ int main(int argc, char *argv[]) {
 #endif
   QGuiApplication app(argc, argv);
 
+  ItemListModel itemListModel;
+  ItemListController itemListController(&itemListModel);
+  TaskViewModel taskViewModel;
   QQmlApplicationEngine engine;
   VectorImplementation *vectorHandler = new VectorImplementation;
   UnitsFactory *unitsFactory = new UnitsFactory;
@@ -17,6 +23,9 @@ int main(int argc, char *argv[]) {
   engine.rootContext()->setContextProperty("vectorHandler", vectorHandler);
   engine.rootContext()->setContextProperty("hashTableHandler", hashTable);
   engine.rootContext()->setContextProperty("unitsFactory", unitsFactory);
+  engine.rootContext()->setContextProperty("itemListModel", &itemListModel);
+  engine.rootContext()->setContextProperty("itemListController", &itemListController);
+  engine.rootContext()->setContextProperty("taskViewModel", &taskViewModel);
   const QUrl url(QStringLiteral("qrc:/main.qml"));
   QObject::connect(
       &engine, &QQmlApplicationEngine::objectCreated, &app,

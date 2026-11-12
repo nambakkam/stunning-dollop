@@ -8,9 +8,14 @@ SOURCES += \
         cgsunitshandler.cpp \
         customhashtable.cpp \
         fpsunitshandler.cpp \
+        itemlistcontroller.cpp \
+        itemlistmodel.cpp \
         main.cpp \
         mksunitshandler.cpp \
         randomvaluesgenerator.cpp \
+        siunitshandler.cpp \
+        taskmodel.cpp \
+        taskviewmodel.cpp \
         unitsfactory.cpp \
         unitshandler.cpp \
         vectorimplementation.cpp
@@ -34,8 +39,13 @@ HEADERS += \
     cgsunitshandler.h \
     customhashtable.h \
     fpsunitshandler.h \
+    itemlistcontroller.h \
+    itemlistmodel.h \
     mksunitshandler.h \
     randomvaluesgenerator.h \
+    siunitshandler.h \
+    taskmodel.h \
+    taskviewmodel.h \
     unitsfactory.h \
     unitshandler.h \
     vectorimplementation.h

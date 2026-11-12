@@ -11,7 +11,8 @@
  *
  * This class enables the creation of UnitsHandler instances corresponding to
  * different unit systems, such as CGS (Centimeter-Gram-Second), MKS
- * (Meter-Kilogram-Second), and FPS (Foot-Pound-Second).
+ * (Meter-Kilogram-Second), FPS (Foot-Pound-Second), and SI (International
+ * System of Units).
  */
 class UnitsFactory : public QObject {
   Q_OBJECT
@@ -25,7 +26,7 @@ public:
   /**
    * @brief productEnum is the enum defining the supported unit systems.
    */
-  enum productEnum { CGS, MKS, FPS };
+  enum productEnum { CGS, MKS, FPS, SI };
   Q_ENUM(productEnum)
   explicit UnitsFactory(QObject *parent = nullptr);
   /**
