@@ -17,9 +17,9 @@ int main(int argc, char *argv[]) {
   ItemListController itemListController(&itemListModel);
   TaskViewModel taskViewModel;
   QQmlApplicationEngine engine;
-  VectorImplementation *vectorHandler = new VectorImplementation;
-  UnitsFactory *unitsFactory = new UnitsFactory;
-  CustomHashTable *hashTable = new CustomHashTable;
+  VectorImplementation *vectorHandler = new VectorImplementation(&app);
+  UnitsFactory *unitsFactory = new UnitsFactory(&app);
+  CustomHashTable *hashTable = new CustomHashTable(&app);
   engine.rootContext()->setContextProperty("vectorHandler", vectorHandler);
   engine.rootContext()->setContextProperty("hashTableHandler", hashTable);
   engine.rootContext()->setContextProperty("unitsFactory", unitsFactory);

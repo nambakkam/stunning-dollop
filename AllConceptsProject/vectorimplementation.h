@@ -1,7 +1,6 @@
 #ifndef VECTORIMPLEMENTATION_H
 #define VECTORIMPLEMENTATION_H
 
-#include <QFutureWatcher>
 #include <QMetaEnum>
 #include <QObject>
 #include <QQmlVarPropertyHelpers.h>
@@ -82,8 +81,6 @@ private:
    * @param size The size of the vector to generate.
    */
   void generateRandomVector(size_t size);
-  QFutureWatcher<void>
-      vectorFutureWatcher; /**< Watcher for asynchronous vector operations. */
 };
 
 #endif // VECTORIMPLEMENTATION_H

@@ -6,11 +6,11 @@
 #include <QtQml>
 #include <random>
 
-#define SMALLSIZE 10000
-#define MEDIUMSIZE 50000
-#define LARGESIZE 100000
-#define LOWERLIMIT 10
-#define UPPERLIMIT 1000
+inline constexpr int kSmallSize = 10000;
+inline constexpr int kMediumSize = 50000;
+inline constexpr int kLargeSize = 100000;
+inline constexpr int kLowerLimit = 10;
+inline constexpr int kUpperLimit = 1000;
 
 /**
  * @brief The RandomValuesGenerator class provides functionality to generate

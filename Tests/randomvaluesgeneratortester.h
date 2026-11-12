@@ -9,8 +9,10 @@ class RandomValuesGeneratorTester : public QObject
 public:
     explicit RandomValuesGeneratorTester(QObject *parent = nullptr);
 
-signals:
-
+private slots:
+    void randomIntKeepsRequestedRange();
+    void randomStringRespectsRequestedLength();
+    void randomRealSwapsInvertedRange();
 };
 
 #endif // RANDOMVALUESGENERATORTESTER_H

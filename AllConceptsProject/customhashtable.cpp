@@ -1,34 +1,26 @@
 #include "customhashtable.h"
 #include "randomvaluesgenerator.h"
 #include <QDebug>
-#include <QFuture>
-#include <QtConcurrent>
 
 CustomHashTable::CustomHashTable(QObject *parent, int size)
-    : QObject{parent}, m_disableScreen{false}, m_size{size}, data{size} {
-  QObject::connect(&hashFutureWatcher, &QFutureWatcher<void>::finished, [=]() {
-    displayHashTable();
-    set_description("Hash Table set to selected size");
-    set_disableScreen(false);
-  });
-}
+    : QObject{parent}, m_disableScreen{false}, m_size{size}, data{size} {}
 
 void CustomHashTable::set() {
   QString key =
-      RandomValuesGenerator::getInstance().generateRandomString(LOWERLIMIT);
-  int value = RandomValuesGenerator::getInstance().generateRandomInt(
-      LOWERLIMIT, UPPERLIMIT);
-  int hashValue = hash(key);
+      RandomValuesGenerator::getInstance().generateRandomString(kLowerLimit);
+  const int value = RandomValuesGenerator::getInstance().generateRandomInt(
+      kLowerLimit, kUpperLimit);
+  const int hashValue = hash(key);
   keyValuePair pair;
   pair.key = key;
   pair.value = value;
   QString desc;
-  QVector<QString> keys = getAllKeys();
+  const QVector<QString> keys = getAllKeys();
   if (!keys.contains(key)) {
     data[hashValue].push_back(pair);
-    desc =
-        QString("Key: %1 and Value: %2 added to HashTable").arg(key).arg(value);
-
+    desc = QString("Key: %1 and Value: %2 added to HashTable")
+               .arg(key)
+               .arg(value);
   } else {
     desc = QString("Key: %1 and Value: %2 is already present in hashTable")
                .arg(key)
@@ -37,16 +29,21 @@ void CustomHashTable::set() {
   set_description(desc);
 }
 int CustomHashTable::get() {
-  QVector<QString> keys = getAllKeys();
-  int index =
-      RandomValuesGenerator::getInstance().generateRandomInt(0, keys.length());
-  QString key = keys[index];
-  int hashValue = hash(key);
+  const QVector<QString> keys = getAllKeys();
+  if (keys.isEmpty()) {
+    set_description("Hash table is empty");
+    return 0;
+  }
+
+  const int index =
+      RandomValuesGenerator::getInstance().generateRandomInt(0, keys.length() - 1);
+  const QString key = keys.at(index);
+  const int hashValue = hash(key);
   int value = 0;
-  for (int i = 0; i < data[hashValue].length(); i++) {
+  for (int i = 0; i < data[hashValue].length(); ++i) {
     if (data[hashValue].at(i).key == key) {
       value = data[hashValue].at(i).value;
-      QString desc = QString("Key: %1 and Value: %2").arg(key).arg(value);
+      const QString desc = QString("Key: %1 and Value: %2").arg(key).arg(value);
       set_description(desc);
       break;
     }
@@ -54,16 +51,21 @@ int CustomHashTable::get() {
   return value;
 }
 void CustomHashTable::removeKey() {
-  QVector<QString> keys = getAllKeys();
-  int index =
-      RandomValuesGenerator::getInstance().generateRandomInt(0, keys.length());
-  QString key = keys[index];
-  int hashValue = hash(key);
-  for (int i = 0; i < data[hashValue].length(); i++) {
+  const QVector<QString> keys = getAllKeys();
+  if (keys.isEmpty()) {
+    set_description("Hash table is empty");
+    return;
+  }
+
+  const int index =
+      RandomValuesGenerator::getInstance().generateRandomInt(0, keys.length() - 1);
+  const QString key = keys.at(index);
+  const int hashValue = hash(key);
+  for (int i = 0; i < data[hashValue].length(); ++i) {
     if (data[hashValue].at(i).key == key) {
-      QString desc = QString("Key: %1 and Value: %2 removed from HashTable")
-                         .arg(key)
-                         .arg(data[hashValue].at(i).value);
+      const QString desc = QString("Key: %1 and Value: %2 removed from HashTable")
+                             .arg(key)
+                             .arg(data[hashValue].at(i).value);
       data[hashValue].removeAt(i);
       set_description(desc);
       break;
@@ -82,6 +84,10 @@ QVector<QString> CustomHashTable::getAllKeys() {
 }
 
 int CustomHashTable::hash(const QString &key) {
+  if (m_size <= 0) {
+    return 0;
+  }
+
   int hash = 0;
   for (int i = 0; i < key.length(); ++i) {
     hash = (hash + key.at(i).unicode() * i) % m_size;
@@ -89,7 +95,11 @@ int CustomHashTable::hash(const QString &key) {
   return hash;
 }
 void CustomHashTable::setHashTable() {
-  for (int i = 0; i < m_size; i++) {
+  if (m_size <= 0) {
+    return;
+  }
+
+  for (int i = 0; i < m_size; ++i) {
     set();
   }
 }
@@ -98,36 +108,35 @@ void CustomHashTable::createHashtable(int size) {
   int hashTableSize = 0;
   switch (size) {
   case RandomValuesGenerator::SMALL:
-    hashTableSize = SMALLSIZE;
+    hashTableSize = kSmallSize;
     break;
   case RandomValuesGenerator::MEDIUM:
-    hashTableSize = MEDIUMSIZE;
+    hashTableSize = kMediumSize;
     break;
   case RandomValuesGenerator::LARGE:
-    hashTableSize = LARGESIZE;
+    hashTableSize = kLargeSize;
     break;
   default:
-    break;
+    return;
   }
+
   data.clear();
   data.resize(hashTableSize);
   m_size = hashTableSize;
-  QFuture<void> hashTableFuture =
-      QtConcurrent::run(this, &CustomHashTable::setHashTable);
-  set_description(
-      "Please wait while the elements are being added to hash table");
-  set_disableScreen(true);
-  hashFutureWatcher.setFuture(hashTableFuture);
+  setHashTable();
+  set_description("Hash Table set to selected size");
+  set_disableScreen(false);
+  displayHashTable();
 }
 
 void CustomHashTable::displayHashTable() {
   QVector<QString> keysValues;
   set_disableScreen(true);
-  for (int i = 0; i < data.length(); i++) {
-    for (int j = 0; j < data.at(i).length(); j++) {
-      QString pair = QString("Key: %1 Value %2 ")
-                         .arg(data.at(i).at(j).key)
-                         .arg(data.at(i).at(j).value);
+  for (int i = 0; i < data.length(); ++i) {
+    for (int j = 0; j < data.at(i).length(); ++j) {
+      const QString pair = QString("Key: %1 Value %2 ")
+                               .arg(data.at(i).at(j).key)
+                               .arg(data.at(i).at(j).value);
       keysValues.append(pair);
     }
   }

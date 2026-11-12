@@ -9,28 +9,27 @@ UnitsFactory::UnitsFactory(QObject *parent)
     : QObject{parent}, m_lengthUnits{""}, m_massUnits{""}, m_timeUnits{""} {}
 
 void UnitsFactory::setUnits(UnitsFactory::productEnum value) {
-  std::unique_ptr<UnitsHandler> product(factoryMethod(value));
+  std::unique_ptr<UnitsHandler> product = factoryMethod(value);
+  if (product == nullptr) {
+    return;
+  }
+
   set_lengthUnits(product->getLengthUnits());
   set_massUnits(product->getMassUnits());
   set_timeUnits(product->getTimeUnits());
 }
 
-UnitsHandler *UnitsFactory::factoryMethod(productEnum value) const {
+std::unique_ptr<UnitsHandler> UnitsFactory::factoryMethod(productEnum value) const {
   switch (value) {
   case CGS:
-    return new CGSUnitsHandler;
-    break;
+    return std::make_unique<CGSUnitsHandler>();
   case MKS:
-    return new MKSUnitsHandler;
-    break;
+    return std::make_unique<MKSUnitsHandler>();
   case FPS:
-    return new FPSUnitsHandler;
-    break;
+    return std::make_unique<FPSUnitsHandler>();
   case SI:
-    return new SIUnitsHandler;
-    break;
+    return std::make_unique<SIUnitsHandler>();
   default:
     return nullptr;
-    break;
   }
 }

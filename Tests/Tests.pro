@@ -10,6 +10,7 @@ CONFIG -= app_bundle
 SOURCES += \
         ../AllConceptsProject/itemlistcontroller.cpp \
         ../AllConceptsProject/itemlistmodel.cpp \
+        ../AllConceptsProject/randomvaluesgenerator.cpp \
         ../AllConceptsProject/taskmodel.cpp \
         ../AllConceptsProject/taskviewmodel.cpp \
         itemlisttest.cpp \
