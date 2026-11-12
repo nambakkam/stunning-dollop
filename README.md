@@ -107,6 +107,10 @@ The app is centered around a multi-screen learning dashboard:
 - MVC Item List: adds and removes list items using a controller-backed workflow
 - MVVM Task List: manages tasks through a model-view-viewmodel pattern
 
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for the full text.
+
 ## Notes
 
 This project is primarily educational and intentionally focused on exploring Qt, QML, and C++ programming concepts. It is a practical playground for understanding how data structures and UI patterns fit together in a desktop app.
