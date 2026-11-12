@@ -129,6 +129,20 @@ Rectangle {
                 }
             }
         }
+
+        StyledButton {
+            id: sampleButton
+            implicitWidth: parent.width * 0.35
+            implicitHeight: parent.height * 0.05
+            Layout.alignment: Qt.AlignCenter
+            buttonTextValue: "TestLayout"
+            iconSource: "qrc:/icons/question.svg"
+            clickArea {
+                onClicked: {
+                    vectorHandler.valueAtRandomIndex()
+                }
+            }
+        }
         ScrollView {
             id: vectorTextview
             implicitWidth: parent.width * 0.8

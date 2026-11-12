@@ -2,6 +2,7 @@
 #include "cgsunitshandler.h"
 #include "fpsunitshandler.h"
 #include "mksunitshandler.h"
+#include "siunitshandler.h"
 #include <memory>
 
 UnitsFactory::UnitsFactory(QObject *parent)
@@ -24,6 +25,9 @@ UnitsHandler *UnitsFactory::factoryMethod(productEnum value) const {
     break;
   case FPS:
     return new FPSUnitsHandler;
+    break;
+  case SI:
+    return new SIUnitsHandler;
     break;
   default:
     return nullptr;

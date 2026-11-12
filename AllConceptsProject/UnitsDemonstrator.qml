@@ -18,7 +18,7 @@ Rectangle {
             implicitWidth: parent.width * 0.35
             implicitHeight: parent.height * 0.07
             Layout.alignment: Qt.AlignCenter
-            model: ["Choose Units", "CGS", "MKS", "FPS"]
+            model: ["Choose Units", "CGS", "MKS", "FPS", "SI"]
             onCurrentIndexChanged: {
                 if (currentIndex > 0) {
                     unitsFactory.setUnits(currentIndex - 1)

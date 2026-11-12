@@ -7,6 +7,23 @@ Item {
     width: 480
     height: 800
     property alias currentIndex: stackItems.currentIndex
+
+    Rectangle {
+        id: background
+        anchors.fill: parent
+        gradient: Gradient {
+            GradientStop { position: 0.0; color: "#F5F2FF" }
+            GradientStop { position: 1.0; color: "#EAF3FF" }
+        }
+    }
+
+    Rectangle {
+        id: navyOverlay
+        anchors.fill: parent
+        color: "#000080"
+        opacity: 0.18
+    }
+
     StackLayout {
         id: stackItems
         anchors.fill: parent
@@ -21,6 +38,14 @@ Item {
         UnitsDemonstrator {
             id: unitsScreen
             property string heading: "Units Demonstration"
+        }
+        ItemListScreen {
+            id: itemListScreen
+            property string heading: "MVC Item List"
+        }
+        TaskListScreen {
+            id: taskListScreen
+            property string heading: "MVVM Task List"
         }
     }
     HeadingToolBar {
