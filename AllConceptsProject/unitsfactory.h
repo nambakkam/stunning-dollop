@@ -5,6 +5,7 @@
 #include <QMetaEnum>
 #include <QObject>
 #include <QQmlVarPropertyHelpers.h>
+#include <memory>
 /**
  * @brief The UnitsFactory class provides a factory for creating instances of
  * UnitsHandler.
@@ -36,7 +37,7 @@ public:
    * @param value The unit system enum value.
    * @return Pointer to the created UnitsHandler instance.
    */
-  UnitsHandler *factoryMethod(productEnum value) const;
+  std::unique_ptr<UnitsHandler> factoryMethod(productEnum value) const;
   /**
    * @brief Sets the unit system for length, mass, and time simultaneously.
    *

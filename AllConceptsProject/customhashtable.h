@@ -1,7 +1,6 @@
 #ifndef CUSTOMHASHTABLE_H
 #define CUSTOMHASHTABLE_H
 
-#include <QFutureWatcher>
 #include <QObject>
 #include <QQmlVarPropertyHelpers.h>
 #include <QVector>
@@ -86,7 +85,6 @@ private:
    * @brief Sets up the hash table.
    */
   void setHashTable();
-  QFutureWatcher<void> hashFutureWatcher;
 };
 
 #endif // CUSTOMHASHTABLE_H
